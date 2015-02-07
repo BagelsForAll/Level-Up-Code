@@ -1,0 +1,107 @@
+
+#Level Up! This program simulates leveling up and buying items in a video game. Also, you choose what ability to use against an enemy.
+ChampHealth = 100
+AP = 0
+lvl = 0
+YourHealth = 1000
+DragonHealth = 2000
+HourglassBonus = 0
+MR = 0
+DGActive = 0
+
+#Before we start, we need to define a function for the Dragon battle at the end.
+
+#First the program asks for the amount of XP you have based on your minion kill count.
+minionNumber = int(input("how many minions have you killed?"))
+if minionNumber <100 :
+    print ("You need to kill more minions.")
+else:
+    print ("Level Up!")
+    lvl = lvl+1
+
+#this line makes a sort of shop.
+answer2 = input ("What Item would you like to buy? There is: \nDeathcap \nLich Bane \nGolden Hourglass \n")
+
+#this gives you a certain amount of Ability Power based on what item you buy.
+if answer2 == ("Deathcap"):
+    print ("+120 Ability Power")
+    AP = AP+120
+elif answer2 == ("Lich Bane"):
+    print ("+80 Ability Power, +30 movement speed")
+    AP = AP+80
+elif answer2 == ("Golden Hourglass"):
+    print ("+90 Ability Power, +50 magic resistance")
+    AP = AP+90
+answer3 = input ("You come across an enemy champion. You can use: \nBasic Attack \nQ \nUltimate \n")
+
+#this lets you choose an attack. The damage varies on the amount of Ability Power you have.
+if answer3 == ("Basic Attack"):
+    print ("It did ",10+AP,"damage!")
+    ChampHealth = ChampHealth -10
+    ChampHealth = ChampHealth -AP
+elif answer3 == ("Q"):
+    print ("It did ",60+AP,"damage!")
+    ChampHealth = ChampHealth -60
+    ChampHealth = ChampHealth -AP
+elif answer3 == ("Ultimate"):
+    print ("It did ",100+AP,"damage! Critical Hit!")
+    ChampHealth = ChampHealth -100
+    ChampHealth = ChampHealth -AP
+
+#this command determines whether the enemy champion is dead or not based on their health.
+if ChampHealth >0:
+    print ("The enemy champion survived and forced you to retreat!")
+elif ChampHealth <0:
+    print ("You killed the champion and gained 300 gold! Level Up!")
+    lvl = lvl +1
+
+#this line is a sum-up of your current level.
+if ChampHealth <0:
+    print ("You are now Level ",lvl,"! Yeah, I know it's not much, but hey, you do damage! Let's go an get dragon!")
+elif ChampHealth >0:
+    print ("You're only level ",lvl,". Come on, let's go for dragon!")
+
+#this line simulates the shop, with added features such as active abilities of items.
+answer4 = input("First, let's buy some items! you can buy: \nDeathcap \nLich Bane \nGolden Hourglass \nDeathfire Grasp \n")
+if answer4 == ("Deathcap"):
+    print ("+120 Ability Power")
+    AP = AP+120
+elif answer4 == ("Lich Bane"):
+    print ("+80 Ability Power, +30 movement speed")
+    AP = AP+80
+elif answer4 == ("Golden Hourglass"):
+    print ("+90 Ability Power, +50 magic resistance")
+    AP = AP+90
+    MR = MR+50
+    HourglassBonus = HourglassBonus +1
+elif answer4 == ("Deathfire Grasp"):
+    print ("+120 Ability Power, +10% cooldown reduction")
+    AP = AP+120
+    DGActive = DGActive+1
+
+#this one simulated the Dragon battle.
+print("You face the Dragon. It has ",DragonHealth," health. You start the fight with a Basic attack, dealing ",90," damage!")
+DragonHealth = DragonHealth -90
+while DragonHealth >0:
+    answer5 = input("What will you do now? You can use: \nBasic Attack \nQ \nW \nE \nUltimate \n")
+    if answer5 == ("Basic Attack"):
+        print ("It did ",90," damage!")
+    elif answer5 == ("Q"):
+        print ("It did ",200+AP," damage!")
+        DragonHealth = DragonHealth -(200+AP)
+    elif answer5 == ("W"):
+        print ("It did ",300+AP," damage!")
+        DragonHealth = DragonHealth -(300+AP)
+    elif answer5 == ("E"):
+        print ("It did ",400+AP," damage!")
+        DragonHealth = DragonHealth -(400+AP)
+    elif answer5 == ("Ultimate"):
+        print ("It did ",800+AP," damage!")
+        DragonHealth = DragonHealth -(800+AP)
+    if DragonHealth >0:
+        print ("The Dragon attacks and does ",200," damage!")
+        YourHealth = YourHealth -200
+if DragonHealth <0:
+    print ("Yeah! You killed the dragon and gained 3 levels!")
+    lvl = lvl+3
+    print ("You are now level ",lvl,"!")
