@@ -1,0 +1,15 @@
+#Shop
+AP = 87
+HP = 1200
+answer = input ("Choose and item. \nDeathcap \nArmour \nHourglass \nYou currently have "+str(AP)+" Ability Power and "+str(HP)+" Health.\n")
+if answer == "Deathcap":
+    AP = AP+120
+    print ("Thanks! you now have ",AP," Ability Power and ",HP," Health.\n")
+elif answer == "Armour":
+    HP = HP+800
+    print ("Thanks! you now have ",AP," Ability Power and ",HP," Health.\n")
+elif answer == "Hourglass":
+    AP = AP+120
+    print ("Thanks! you now have ",AP," Ability Power and ",HP," Health.\n")
+print ("Thanks for shopping!")
+
